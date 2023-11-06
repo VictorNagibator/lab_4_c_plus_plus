@@ -7,6 +7,21 @@ void CPU::operator=(CPU other) {
 	this->numOfCores = other.getNumOfCores();
 }
 
+CPU CPU::operator+(float addable) {
+	return CPU(this->getModelName(), this->getSocket(), this->getFrequency() + addable, this->getNumOfCores());
+}
+
+CPU& CPU::operator++() {
+	tryToSetArguments(this->getModelName(), this->getSocket(), this->getFrequency() + this->tryFreq, this->getNumOfCores());
+	return *this;
+}
+
+CPU CPU::operator++(int) {
+	CPU tempCPU = *this;
+	++*this;
+	return tempCPU;
+}
+
 std::ostream& operator << (std::ostream& out, const CPU& cpu) {
 	out << cpu.toString();
 	return out;

@@ -7,6 +7,21 @@ void RAM::operator=(RAM other) {
 	this->capacity = other.getCapacity();
 }
 
+RAM RAM::operator+(float addable) {
+	return RAM(this->getModelName(), this->getRAMType(), this->getFrequency() + addable, this->getCapacity());
+}
+
+RAM& RAM::operator++() {
+	tryToSetArguments(this->getModelName(), this->getRAMType(), this->getFrequency() + this->tryFreq, this->getCapacity());
+	return *this;
+}
+
+RAM RAM::operator++(int) {
+	RAM tempRAM = *this;
+	++*this;
+	return tempRAM;
+}
+
 std::ostream& operator << (std::ostream& out, const RAM& ram) {
 	out << ram.toString();
 	return out;

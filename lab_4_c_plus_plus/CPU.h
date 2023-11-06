@@ -1,5 +1,4 @@
-﻿#pragma once
-#include <iostream>
+﻿#include <iostream>
 #include <string>
 #include <format>
 #include "LaptopComponent.h"
@@ -13,6 +12,9 @@ public:
 	~CPU() = default;
 
 	void operator=(CPU other);
+	CPU operator+(float addable);
+	CPU& operator++();
+	CPU operator++(int);
 	friend std::ostream& operator << (std::ostream& out, const CPU& cpu);
 
 	std::string getComponentName() const override;
@@ -22,14 +24,14 @@ public:
 	int getNumOfCores() const;
 	void input() override;
 	std::string toString() const override;
-
-	const float maxFreq = 9.0; //условная максимальная тактовая частота для процессора
-	const double tryFreq = 0.2; //условное повышение частоты для разгона
 private:
 	std::string modelName;
 	std::string socket;
 	float frequency = 0;
 	int numOfCores = 0;
+
+	const float maxFreq = 9.0; //условная максимальная тактовая частота для процессора
+	const double tryFreq = 0.2; //условное повышение частоты для разгона
 
 	bool checkArguments(std::string modelName, std::string socket, float frequency, int numOfCores) const;
 	void tryToSetArguments(std::string modelName, std::string socket, float frequency, int numOfCores);

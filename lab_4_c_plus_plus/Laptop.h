@@ -1,7 +1,5 @@
 #pragma once
 #include <iostream>
-#include <string>
-#include <typeinfo>
 #include "CPU.h"
 #include "Display.h"
 #include "GPU.h"
@@ -37,6 +35,8 @@ public:
 	void input();
 	void boostCPU();
 	void boostRAM();
+	void boostCPU(float addable);
+	void boostRAM(float addable);
 	std::string toString() const;
 private:
 	std::string modelName;

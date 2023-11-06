@@ -17,6 +17,9 @@ public:
 	~RAM() = default;
 
 	void operator=(RAM other);
+	RAM operator+(float addable);
+	RAM& operator++();
+	RAM operator++(int);
 	friend std::ostream& operator << (std::ostream& out, const RAM& ram);
 
 	std::string getComponentName() const override;
@@ -26,15 +29,15 @@ public:
 	int getCapacity() const;
 	void input() override;
 	std::string toString() const override;
-
-	//вектор максимально возможных частот для каждого типа памяти
-	const std::vector<int> DDRFreqMax = { 400, 1066, 2400, 3333, 6400 };
-	const float tryFreq = 50; //условное повышение частоты для разгона
 private:
 	std::string modelName;
 	RAMType type = DDR;
 	float frequency = 0;
 	int capacity = 0;
+
+	//вектор максимально возможных частот для каждого типа памяти
+	const std::vector<int> DDRFreqMax = { 400, 1066, 2400, 3333, 6400 };
+	const float tryFreq = 50; //условное повышение частоты для разгона
 
 	bool checkArguments(std::string modelName, RAMType type, float frequency, int capacity) const;
 	void tryToSetArguments(std::string modelName, RAMType type, float frequency, int capacity);

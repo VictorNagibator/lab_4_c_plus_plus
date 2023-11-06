@@ -111,24 +111,47 @@ void Laptop::input() {
 }
 
 void Laptop::boostCPU() {
-	if (this->cpu.getFrequency() + this->cpu.tryFreq <= this->cpu.maxFreq) {
-		cpu = CPU(this->cpu.getModelName(), this->cpu.getSocket(), this->cpu.getFrequency() + this->cpu.tryFreq, this->cpu.getNumOfCores());
+	try
+	{
+		cpu++;
 	}
-	else if (this->cpu.getFrequency() < this->cpu.maxFreq) {
-		cpu = CPU(this->cpu.getModelName(), this->cpu.getSocket(), this->cpu.maxFreq, this->cpu.getNumOfCores());
+	catch (const std::invalid_argument&)
+	{
+		std::cout << "Разгон CPU больше невозможен!\n";
 	}
-	else std::cout << "Разгон CPU больше невозможен!\n";
 }
 
 void Laptop::boostRAM() {
-	float maxFreq = this->ram.DDRFreqMax[this->ram.getRAMType()];
-	if (this->ram.getFrequency() + this->ram.tryFreq <= maxFreq) {
-		ram = RAM(this->ram.getModelName(), this->ram.getRAMType(), this->ram.getFrequency() + this->ram.tryFreq, this->ram.getCapacity());
+	try
+	{
+		ram++;
 	}
-	else if (this->ram.getFrequency() < maxFreq) {
-		ram = RAM(this->ram.getModelName(), this->ram.getRAMType(), maxFreq, this->ram.getCapacity());
+	catch (const std::invalid_argument&)
+	{
+		std::cout << "Разгон RAM больше не возможен!\n";
 	}
-	else std::cout << "Разгон RAM больше не возможен!\n";
+}
+
+void Laptop::boostCPU(float addable) {
+	try
+	{
+		cpu = cpu + addable;
+	}
+	catch (const std::invalid_argument&)
+	{
+		std::cout << "Разгон CPU больше невозможен!\n";
+	}
+}
+
+void Laptop::boostRAM(float addable) {
+	try
+	{
+		ram = ram + addable;
+	}
+	catch (const std::invalid_argument&)
+	{
+		std::cout << "Разгон RAM больше не возможен!\n";
+	}
 }
 
 std::string Laptop::toString() const {
