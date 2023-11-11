@@ -8,34 +8,34 @@ int main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
-	//1. Пример работы со статическим методом
+	//1. РџСЂРёРјРµСЂ СЂР°Р±РѕС‚С‹ СЃРѕ СЃС‚Р°С‚РёС‡РµСЃРєРёРј РјРµС‚РѕРґРѕРј
 	for (int i = 0; i < 5; i++)
 	{
 		Order test = Order(Laptop());
 	}
-	std::cout << "Общее количество заказов: " << Order::getNumOfLastOrder() << std::endl << std::endl;
+	std::cout << "РћР±С‰РµРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РєР°Р·РѕРІ: " << Order::getNumOfLastOrder() << std::endl << std::endl;
 
-	//2. Возврат значения через указатель и ссылку
+	//2. Р’РѕР·РІСЂР°С‚ Р·РЅР°С‡РµРЅРёСЏ С‡РµСЂРµР· СѓРєР°Р·Р°С‚РµР»СЊ Рё СЃСЃС‹Р»РєСѓ
 	Laptop example = Laptop();
 	DataStorage* storage = example.getDataStorage();
 	const CPU& cpu = example.getCPU();
 	std::cout << storage->toString() << std::endl;
 	std::cout << cpu << std::endl << std::endl;
 
-	//3. Перегрузка оператора +,++
+	//3. РџРµСЂРµРіСЂСѓР·РєР° РѕРїРµСЂР°С‚РѕСЂР° +,++
 	RAM ram = RAM();
 	std::cout << ram++ << std::endl;
 	std::cout << ++ram << std::endl;
 	RAM ram2 = ram + 100;
 	std::cout << ram2 << std::endl << std::endl;
 
-	//4. Работа с классом std::string
+	//4. Р Р°Р±РѕС‚Р° СЃ РєР»Р°СЃСЃРѕРј std::string
 	std::string str = cpu.toString();
 	std::cout << str << std::endl;
-	str += " example"; //конкатенация строк 
+	str += " example"; //РєРѕРЅРєР°С‚РµРЅР°С†РёСЏ СЃС‚СЂРѕРє 
 	std::cout << str << std::endl;
-	std::cout << str.find("0") << std::endl; //найти первый 0
-	str.erase(str.find("0")); //удалить подстроку
+	std::cout << str.find("0") << std::endl; //РЅР°Р№С‚Рё РїРµСЂРІС‹Р№ 0
+	str.erase(str.find("0")); //СѓРґР°Р»РёС‚СЊ РїРѕРґСЃС‚СЂРѕРєСѓ
 	std::cout << str << std::endl;
 
 	return 0;
