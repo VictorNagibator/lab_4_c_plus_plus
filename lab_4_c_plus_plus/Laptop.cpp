@@ -55,7 +55,7 @@ void Laptop::setCPU(CPU cpu) {
 	if (checkArguments(this->modelName, cpu, this->gpu, this->ram, this->motherboard, this->display, this->dataStorage)) {
 		this->cpu = cpu;
 	}
-	else throw std::invalid_argument("Неподходящий сокет");
+	else throw std::invalid_argument("Неподходящий сокет!");
 }
 
 void Laptop::setGPU(GPU gpu) {
@@ -112,12 +112,12 @@ void Laptop::input() {
 
 std::string Laptop::toString() const {
 	std::string name =
-		"Название модели: " + this->modelName + "\n" +
+		"               : " + this->modelName + "\n" +
 		"CPU: " + this->cpu.toString() + "\n" +
 		"GPU: " + this->gpu.toString() + "\n" +
 		"RAM: " + this->ram.toString() + "\n" +
-		"Материнская плата: " + this->motherboard.toString() + "\n" +
-		"Экран: " + this->display.toString() + "\n" +
+		"                 : " + this->motherboard.toString() + "\n" +
+		"     : " + this->display.toString() + "\n" +
 		this->dataStorage->getComponentName() + ": " + dataStorage->toString() + "\n";
 	return name;
 }

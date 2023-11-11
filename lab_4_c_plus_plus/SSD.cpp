@@ -35,7 +35,7 @@ void SSD::input() {
 	FlashMemoryType typeOfFlashMemory;
 	DataStorage::input();
 
-	std::cout << "Введите тип флеш-памяти (0 - SLC, 1 - MLC, 2 - NOR, 3 - NAND, 4 - 3DNAND): ";
+	std::cout << "Р’РІРµРґРёС‚Рµ С‚РёРї С„Р»РµС€-РїР°РјСЏС‚Рё (0 - SLC, 1 - MLC, 2 - NOR, 3 - NAND, 4 - 3DNAND): ";
 	std::cin >> typeOfFlashMemory;
 	while (getchar() != '\n');
 
@@ -56,5 +56,5 @@ void SSD::tryToSetArguments(FlashMemoryType typeOfFlashMemory) {
 	if (checkArguments(typeOfFlashMemory)) {
 		this->typeOfFlashMemory = typeOfFlashMemory;
 	}
-	else throw std::invalid_argument("Некорректный формат данных!");
+	else throw std::invalid_argument("РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ С„РѕСЂРјР°С‚ РґР°РЅРЅС‹С…!");
 }

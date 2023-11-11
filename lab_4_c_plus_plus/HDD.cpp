@@ -35,7 +35,7 @@ void HDD::input() {
 	DataStorage::input();
 	int spindleSpeed;
 
-	std::cout << "Введите cкорость вращения шпинделя: ";
+	std::cout << "Р’РІРµРґРёС‚Рµ cРєРѕСЂРѕСЃС‚СЊ РІСЂР°С‰РµРЅРёСЏ С€РїРёРЅРґРµР»СЏ: ";
 	std::cin >> spindleSpeed;
 	while (getchar() != '\n');
 
@@ -56,5 +56,5 @@ void HDD::tryToSetArguments(int spindleSpeed) {
 	if (checkArguments(spindleSpeed)) {
 		this->spindleSpeed = spindleSpeed;
 	}
-	else throw std::invalid_argument("Некорректный формат данных!");
+	else throw std::invalid_argument("РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ С„РѕСЂРјР°С‚ РґР°РЅРЅС‹С…!");
 }

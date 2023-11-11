@@ -30,14 +30,14 @@ void DataStorage::input() {
 	std::string brand;
 	float formFactor;
 
-	std::cout << "Введите вместимость (в ГБ): ";
+	std::cout << "Р’РІРµРґРёС‚Рµ РІРјРµСЃС‚РёРјРѕСЃС‚СЊ (РІ Р“Р‘): ";
 	std::cin >> capacity;
-	std::cout << "Введите интерфейс подключения (PATA - 0, SATA - 1, SAS - 2, NVMe - 3): ";
+	std::cout << "Р’РІРµРґРёС‚Рµ РёРЅС‚РµСЂС„РµР№СЃ РїРѕРґРєР»СЋС‡РµРЅРёСЏ (PATA - 0, SATA - 1, SAS - 2, NVMe - 3): ";
 	std::cin >> interface;
 	while (getchar() != '\n');
-	std::cout << "Введите производителя: ";
+	std::cout << "Р’РІРµРґРёС‚Рµ РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЏ: ";
 	std::getline(std::cin, brand);
-	std::cout << "Введите форм фактор (в дюймах): ";
+	std::cout << "Р’РІРµРґРёС‚Рµ С„РѕСЂРј С„Р°РєС‚РѕСЂ (РІ РґСЋР№РјР°С…): ";
 	std::cin >> formFactor;
 	while (getchar() != '\n');
 
@@ -46,7 +46,7 @@ void DataStorage::input() {
 
 
 std::string DataStorage::toString() const {
-	std::string name = this->getBrand() + ", " + std::to_string(this->getCapacity()) + " ГБ, " + DataTransferInterfaceToString(this->getInterface()) + ", " + std::format("{:.1f}", this->getFormFactor());
+	std::string name = this->getBrand() + ", " + std::to_string(this->getCapacity()) + " Р“Р‘, " + DataTransferInterfaceToString(this->getInterface()) + ", " + std::format("{:.1f}", this->getFormFactor());
 	return name;
 }
 
@@ -61,5 +61,5 @@ void DataStorage::tryToSetArguments(int capacity, DataTransferInterface transfer
 		this->brand = brand;
 		this->formFactor = formFactor;
 	}
-	else throw std::invalid_argument("Некорректный формат данных!");
+	else throw std::invalid_argument("РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ С„РѕСЂРјР°С‚ РґР°РЅРЅС‹С…!");
 }

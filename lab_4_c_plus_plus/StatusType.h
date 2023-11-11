@@ -7,13 +7,13 @@ static std::string StatusTypeToString(StatusType type) {
 	switch (type)
 	{
 	case ONHOLD:
-		result = "В ожидании";
+		result = "Р’ РѕР¶РёРґР°РЅРёРё";
 		break;
 	case INPROCCESS:
-		result = "В ремонте";
+		result = "Р’ СЂРµРјРѕРЅС‚Рµ";
 		break;
 	case FINISHED:
-		result = "Готов";
+		result = "Р“РѕС‚РѕРІ";
 		break;
 	default:
 		break;
