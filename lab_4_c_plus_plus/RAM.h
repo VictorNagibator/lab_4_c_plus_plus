@@ -17,10 +17,7 @@ public:
 	~RAM() = default;
 
 	void operator=(RAM other);
-	RAM operator+(float addable);
-	RAM& operator++();
-	RAM operator++(int);
-	friend std::ostream& operator << (std::ostream& out, const RAM& ram);
+	friend RAM& operator++(RAM& ram);
 
 	std::string getComponentName() const override;
 	std::string getModelName() const;
@@ -42,3 +39,7 @@ private:
 	bool checkArguments(std::string modelName, RAMType type, float frequency, int capacity) const;
 	void tryToSetArguments(std::string modelName, RAMType type, float frequency, int capacity);
 };
+
+RAM operator+(const RAM& ram, float addable);
+RAM operator++(RAM& ram, int);
+std::ostream& operator << (std::ostream& out, const RAM& ram);

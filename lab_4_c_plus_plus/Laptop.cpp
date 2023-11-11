@@ -110,50 +110,6 @@ void Laptop::input() {
 	dataStorage->input();
 }
 
-void Laptop::boostCPU() {
-	try
-	{
-		cpu++;
-	}
-	catch (const std::invalid_argument&)
-	{
-		std::cout << "Разгон CPU больше невозможен!\n";
-	}
-}
-
-void Laptop::boostRAM() {
-	try
-	{
-		ram++;
-	}
-	catch (const std::invalid_argument&)
-	{
-		std::cout << "Разгон RAM больше не возможен!\n";
-	}
-}
-
-void Laptop::boostCPU(float addable) {
-	try
-	{
-		cpu = cpu + addable;
-	}
-	catch (const std::invalid_argument&)
-	{
-		std::cout << "Разгон CPU больше невозможен!\n";
-	}
-}
-
-void Laptop::boostRAM(float addable) {
-	try
-	{
-		ram = ram + addable;
-	}
-	catch (const std::invalid_argument&)
-	{
-		std::cout << "Разгон RAM больше не возможен!\n";
-	}
-}
-
 std::string Laptop::toString() const {
 	std::string name =
 		"Название модели: " + this->modelName + "\n" +
@@ -189,4 +145,49 @@ DataStorage* Laptop::createDataStorage(int choice) {
 	if (choice == 0) dataStorage = new HDD();
 	else dataStorage = new SSD();
 	return dataStorage;
+}
+
+
+void Laptop::boostCPU() {
+	try
+	{
+		cpu++;
+	}
+	catch (const std::invalid_argument&)
+	{
+		std::cout << "Разгон CPU больше невозможен!\n";
+	}
+}
+
+void Laptop::boostCPU(float addable) {
+	try
+	{
+		cpu = cpu + addable;
+	}
+	catch (const std::invalid_argument&)
+	{
+		std::cout << "Разгон CPU больше невозможен!\n";
+	}
+}
+
+void Laptop::boostRAM() {
+	try
+	{
+		ram++;
+	}
+	catch (const std::invalid_argument&)
+	{
+		std::cout << "Разгон RAM больше не возможен!\n";
+	}
+}
+
+void Laptop::boostRAM(float addable) {
+	try
+	{
+		ram = ram + addable;
+	}
+	catch (const std::invalid_argument&)
+	{
+		std::cout << "Разгон RAM больше не возможен!\n";
+	}
 }

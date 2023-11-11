@@ -45,7 +45,7 @@ private:
 	RAM ram = RAM();
 	Motherboard motherboard = Motherboard();
 	Display display = Display();
-	DataStorage* dataStorage = nullptr;
+	DataStorage* dataStorage = new HDD(); //по умолчанию у ноутбука пусть будет HDD
 
 	bool checkArguments(std::string modelName, CPU cpu, GPU gpu, RAM ram, Motherboard motherboard, Display display, DataStorage* dataStorage);
 	void tryToSetArguments(std::string modelName, CPU cpu, GPU gpu, RAM ram, Motherboard motherboard, Display display, DataStorage* dataStorage);

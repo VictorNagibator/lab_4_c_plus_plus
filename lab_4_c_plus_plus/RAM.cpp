@@ -7,18 +7,18 @@ void RAM::operator=(RAM other) {
 	this->capacity = other.getCapacity();
 }
 
-RAM RAM::operator+(float addable) {
-	return RAM(this->getModelName(), this->getRAMType(), this->getFrequency() + addable, this->getCapacity());
+RAM operator+(const RAM& ram, float addable) {
+	return RAM(ram.getModelName(), ram.getRAMType(), ram.getFrequency() + addable, ram.getCapacity());
 }
 
-RAM& RAM::operator++() {
-	tryToSetArguments(this->getModelName(), this->getRAMType(), this->getFrequency() + this->tryFreq, this->getCapacity());
-	return *this;
+RAM& operator++(RAM& ram) {
+	ram.tryToSetArguments(ram.getModelName(), ram.getRAMType(), ram.getFrequency() + ram.tryFreq, ram.getCapacity());
+	return ram;
 }
 
-RAM RAM::operator++(int) {
-	RAM tempRAM = *this;
-	++*this;
+RAM operator++(RAM& ram, int) {
+	RAM tempRAM = ram;
+	++ram;
 	return tempRAM;
 }
 

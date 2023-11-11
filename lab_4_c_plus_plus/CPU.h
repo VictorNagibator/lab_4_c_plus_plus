@@ -12,10 +12,7 @@ public:
 	~CPU() = default;
 
 	void operator=(CPU other);
-	CPU operator+(float addable);
-	CPU& operator++();
-	CPU operator++(int);
-	friend std::ostream& operator << (std::ostream& out, const CPU& cpu);
+	friend CPU& operator++(CPU& cpu);
 
 	std::string getComponentName() const override;
 	std::string getModelName() const;
@@ -36,3 +33,7 @@ private:
 	bool checkArguments(std::string modelName, std::string socket, float frequency, int numOfCores) const;
 	void tryToSetArguments(std::string modelName, std::string socket, float frequency, int numOfCores);
 };
+
+CPU operator+(const CPU& cpu, float addable);
+CPU operator++(CPU& cpu, int);
+std::ostream& operator << (std::ostream& out, const CPU& cpu);

@@ -1,24 +1,24 @@
 ﻿#include "Cpu.h"
 
-void CPU::operator=(CPU other) {
+void CPU::operator=(const CPU other) {
 	this->modelName = other.getModelName();
 	this->socket = other.getSocket();
 	this->frequency = other.getFrequency();
 	this->numOfCores = other.getNumOfCores();
 }
 
-CPU CPU::operator+(float addable) {
-	return CPU(this->getModelName(), this->getSocket(), this->getFrequency() + addable, this->getNumOfCores());
+CPU operator+(const CPU&cpu, float addable) {
+	return CPU(cpu.getModelName(), cpu.getSocket(), cpu.getFrequency() + addable, cpu.getNumOfCores());
 }
 
-CPU& CPU::operator++() {
-	tryToSetArguments(this->getModelName(), this->getSocket(), this->getFrequency() + this->tryFreq, this->getNumOfCores());
-	return *this;
+CPU& operator++(CPU& cpu) {
+	cpu.tryToSetArguments(cpu.getModelName(), cpu.getSocket(), cpu.getFrequency() + cpu.tryFreq, cpu.getNumOfCores());
+	return cpu;
 }
 
-CPU CPU::operator++(int) {
-	CPU tempCPU = *this;
-	++*this;
+CPU operator++(CPU& cpu, int) {
+	CPU tempCPU = cpu;
+	++cpu;
 	return tempCPU;
 }
 
