@@ -1,78 +1,78 @@
 #include "Motherboard.h"
 
 void Motherboard::operator=(Motherboard other) {
-	this->modelName = other.getModelName();
-	this->socket = other.getSocket();
-	this->chipset = other.getChipset();
-	this->supportedRAMType = other.getSupportedRAMType();
+  this->modelName = other.getModelName();
+  this->socket = other.getSocket();
+  this->chipset = other.getChipset();
+  this->supportedRAMType = other.getSupportedRAMType();
 }
 
 std::ostream& operator << (std::ostream& out, const Motherboard& motherboard) {
-	out << motherboard.toString();
-	return out;
+  out << motherboard.toString();
+  return out;
 }
 
 Motherboard::Motherboard(std::string modelName) {
-	this->modelName = modelName;
+  this->modelName = modelName;
 }
 
 Motherboard::Motherboard(std::string modelName, std::string socket, std::string chipset, RAMType supportedRAMType) {
-	tryToSetArguments(modelName, socket, chipset, supportedRAMType);
+  tryToSetArguments(modelName, socket, chipset, supportedRAMType);
 }
 
 std::string Motherboard::getComponentName() const {
-	return "Motherboard";
+  return "Motherboard";
 }
 
 std::string Motherboard::getModelName() const {
-	return modelName;
+  return modelName;
 }
 
 std::string Motherboard::getSocket() const {
-	return socket;
+  return socket;
 }
 
 std::string Motherboard::getChipset() const {
-	return chipset;
+  return chipset;
 }
 
 RAMType Motherboard::getSupportedRAMType() const {
-	return supportedRAMType;
+  return supportedRAMType;
 }
 
 void Motherboard::input() {
-	std::string modelName, socket, chipset;
-	RAMType supportedRAMType;
+  std::string modelName, socket, chipset;
+  RAMType supportedRAMType;
 
-	std::cout << "¬‚Â‰ËÚÂ Ì‡Á‚‡ÌËÂ Ï‡ÚÂËÌÒÍÓÈ ÔÎ‡Ú˚: ";
-	std::getline(std::cin, modelName);
-	std::cout << "¬‚Â‰ËÚÂ ÒÓÍÂÚ: ";
-	std::getline(std::cin, socket);
-	std::cout << "¬‚Â‰ËÚÂ ˜ËÔÒÂÚ: ";
-	std::getline(std::cin, chipset);
-	std::cout << "¬‚Â‰ËÚÂ ÚËÔ ÔÓ‰‰ÂÊË‚‡ÂÏÓÈ Ô‡ÏˇÚË (DDR - 0, DDR2 - 1, DDR3 - 2, DDR4 - 3, DDR5 - 4): ";
-	std::cin >> supportedRAMType;
-	while (getchar() != '\n');
+  std::cout << "–í–≤–µ–¥–∏—Ç–µ –Ω–∞–∑–≤–∞–Ω–∏–µ –º–∞—Ç–µ—Ä–∏–Ω—Å–∫–æ–π –ø–ª–∞—Ç—ã: ";
+  std::getline(std::cin, modelName);
+  std::cout << "–í–≤–µ–¥–∏—Ç–µ —Å–æ–∫–µ—Ç: ";
+  std::getline(std::cin, socket);
+  std::cout << "–í–≤–µ–¥–∏—Ç–µ —á–∏–ø—Å–µ—Ç: ";
+  std::getline(std::cin, chipset);
+  std::cout << "–í–≤–µ–¥–∏—Ç–µ —Ç–∏–ø –ø–æ–¥–¥–µ—Ä–∂–∏–≤–∞–µ–º–æ–π –ø–∞–º—è—Ç–∏ (DDR - 0, DDR2 - 1, DDR3 - 2, DDR4 - 3, DDR5 - 4): ";
+  std::cin >> supportedRAMType;
+  while (getchar() != '\n');
 
-	tryToSetArguments(modelName, socket, chipset, supportedRAMType);
+  tryToSetArguments(modelName, socket, chipset, supportedRAMType);
 }
 
 std::string Motherboard::toString() const {
-	std::string name = this->getModelName() + ", " + this->getSocket() + ", " + this->getChipset();
-	return name;
+  std::string name = this->getModelName() + ", " + this->getSocket() + ", " + this->getChipset();
+  return name;
 }
 
 
 bool Motherboard::checkArguments(std::string modelName, std::string socket, std::string chipset, RAMType supportedRAMType) const {
-	return supportedRAMType >= DDR && supportedRAMType <= DDR5;
+  return supportedRAMType >= DDR && supportedRAMType <= DDR5;
 }
 
 void Motherboard::tryToSetArguments(std::string modelName, std::string socket, std::string chipset, RAMType supportedRAMType) {
-	if (checkArguments(modelName, socket, chipset, supportedRAMType)) {
-		this->modelName = modelName;
-		this->socket = socket;
-		this->chipset = chipset;
-		this->supportedRAMType = supportedRAMType;
-	}
-	else throw std::invalid_argument("ÕÂÍÓÂÍÚÌ˚È ÙÓÏ‡Ú ‰‡ÌÌ˚ı!");
+  if (checkArguments(modelName, socket, chipset, supportedRAMType)) {
+    this->modelName = modelName;
+    this->socket = socket;
+    this->chipset = chipset;
+    this->supportedRAMType = supportedRAMType;
+  }
+  else throw std::invalid_argument("–ù–µ–∫–æ—Ä—Ä–µ–∫—Ç–Ω—ã–π —Ñ–æ—Ä–º–∞—Ç –¥–∞–Ω–Ω—ã—Ö!");
 }

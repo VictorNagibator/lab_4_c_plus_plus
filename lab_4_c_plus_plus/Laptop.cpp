@@ -1,193 +1,195 @@
+Victor, [11/11/2023 17:07]
 #include "Laptop.h"
 
 void Laptop::operator=(Laptop other) {
-	this->modelName = other.getModelName();
-	this->cpu = other.getCPU();
-	this->gpu = other.getGPU();
-	this->motherboard = other.getMotherboard();
-	this->ram = other.getRAM();
-	this->display = other.getDisplay();
-	this->dataStorage = other.getDataStorage();
+  this->modelName = other.getModelName();
+  this->cpu = other.getCPU();
+  this->gpu = other.getGPU();
+  this->motherboard = other.getMotherboard();
+  this->ram = other.getRAM();
+  this->display = other.getDisplay();
+  this->dataStorage = other.getDataStorage();
 }
 
 std::ostream& operator << (std::ostream& out, const Laptop& laptop) {
-	out << laptop.toString();
-	return out;
+  out << laptop.toString();
+  return out;
 }
 
 Laptop::Laptop(std::string modelName, CPU cpu, GPU gpu, RAM ram, Motherboard motherboard, Display display, DataStorage* dataStorage) {
-	tryToSetArguments(modelName, cpu, gpu, ram, motherboard, display, dataStorage);
+  tryToSetArguments(modelName, cpu, gpu, ram, motherboard, display, dataStorage);
 }
 
 std::string Laptop::getModelName() const {
-	return modelName;
+  return modelName;
 }
 
 const CPU& Laptop::getCPU() const {
-	return cpu;
+  return cpu;
 }
 
 const GPU& Laptop::getGPU() const {
-	return gpu;
+  return gpu;
 }
 
 const RAM& Laptop::getRAM() const {
-	return ram;
+  return ram;
 }
 
 const Motherboard& Laptop::getMotherboard() const {
-	return motherboard;
+  return motherboard;
 }
 
 const Display& Laptop::getDisplay() const {
-	return display;
+  return display;
 }
 
 DataStorage* Laptop::getDataStorage() const {
-	return dataStorage;
+  return dataStorage;
 }
 
 void Laptop::setModelName(std::string modelName) {
-	this->modelName = modelName;
+  this->modelName = modelName;
 }
 
 void Laptop::setCPU(CPU cpu) {
-	if (checkArguments(this->modelName, cpu, this->gpu, this->ram, this->motherboard, this->display, this->dataStorage)) {
-		this->cpu = cpu;
-	}
-	else throw std::invalid_argument("ÕÂÔÓ‰ıÓ‰ˇ˘ËÈ ÒÓÍÂÚ!");
+  if (checkArguments(this->modelName, cpu, this->gpu, this->ram, this->motherboard, this->display, this->dataStorage)) {
+    this->cpu = cpu;
+  }
+  else throw std::invalid_argument("–ù–µ–ø–æ–¥—Ö–æ–¥—è—â–∏–π —Å–æ–∫–µ—Ç!");
 }
 
 void Laptop::setGPU(GPU gpu) {
-	this->gpu = gpu;
+  this->gpu = gpu;
 }
 
 void Laptop::setRAM(RAM ram) {
-	if (checkArguments(this->modelName, this->cpu, this->gpu, ram, this->motherboard, this->display, this->dataStorage)) {
-		this->ram = ram;
-	}
-	else throw std::invalid_argument("ÕÂÔÓ‰ıÓ‰ˇ˘ËÈ ÚËÔ Ô‡ÏˇÚË!");
+  if (checkArguments(this->modelName, this->cpu, this->gpu, ram, this->motherboard, this->display, this->dataStorage)) {
+    this->ram = ram;
+  }
+  else throw std::invalid_argument("–ù–µ–ø–æ–¥—Ö–æ–¥—è—â–∏–π —Ç–∏–ø –ø–∞–º—è—Ç–∏!");
 }
 
 void Laptop::setMotherboard(Motherboard motherboard) {
-	this->motherboard = motherboard;
+  this->motherboard = motherboard;
 
-	if (this->cpu.getSocket() != motherboard.getSocket()) { this->cpu = CPU(); }
-	if (this->ram.getRAMType() != motherboard.getSupportedRAMType()) { this->ram = RAM(motherboard.getSupportedRAMType()); }
+  if (this->cpu.getSocket() != motherboard.getSocket()) { this->cpu = CPU(); }
+  if (this->ram.getRAMType() != motherboard.getSupportedRAMType()) { this->ram = RAM(motherboard.getSupportedRAMType()); }
 }
 
 void Laptop::setDisplay(Display display) {
-	this->display = display;
+  this->display = display;
 }
 
 void Laptop::setDataStorage(DataStorage* dataStorage) {
-	DataStorage* newDataStorage = dataStorage;
-	this->dataStorage = newDataStorage;
+  DataStorage* newDataStorage = dataStorage;
+  this->dataStorage = newDataStorage;
 }
 
 void Laptop::input() {
-	std::cout << "¬‚Â‰ËÚÂ Ì‡Á‚‡ÌËÂ ÌÓÛÚ·ÛÍ‡: ";
-	std::getline(std::cin, modelName);
-	std::cout << "\t¬‚Ó‰ Ô‡‡ÏÂÚÓ‚ ÔÓˆÂÒÒÓ‡\n";
-	cpu.input();
-	std::cout << "\t¬‚Ó‰ Ô‡‡ÏÂÚÓ‚ ‚Ë‰ÂÓÍ‡Ú˚\n";
-	gpu.input();
-	std::cout << "\t¬‚Ó‰ Ô‡‡ÏÂÚÓ‚ RAM\n";
-	ram.input();
-	std::cout << "\t¬‚Ó‰ Ô‡‡ÏÂÚÓ‚ Ï‡ÚÂËÌÒÍÓÈ ÔÎ‡Ú˚\n";
-	motherboard.input();
-	std::cout << "\t¬‚Ó‰ Ô‡‡ÏÂÚÓ‚ ˝Í‡Ì‡\n";
-	display.input();
-	std::cout << "\t¬‚Ó‰ Ô‡‡ÏÂÚÓ‚ ı‡ÌËÎË˘‡\n";
-	std::cout << "¬‚Â‰ËÚÂ ÚËÔ ı‡ÌËÎË˘‡ (0 - HDD, 1 - SSD): ";
-	int choice;
-	do
-	{
-		std::cin >> choice;
-		if (choice != 0 && choice != 1) std::cout << "ÕÂÍÓÂÍÚÌ˚È ‚‚Ó‰!\nœÓÔÓ·ÛÈÚÂ Â˘Â ‡Á: ";
-	} while (choice != 0 && choice != 1);
-	dataStorage = createDataStorage(choice);
-	dataStorage->input();
+  std::cout << "–í–≤–µ–¥–∏—Ç–µ –Ω–∞–∑–≤–∞–Ω–∏–µ –Ω–æ—É—Ç–±—É–∫–∞: ";
+  std::getline(std::cin, modelName);
+  std::cout << "\t–í–≤–æ–¥ –ø–∞—Ä–∞–º–µ—Ç—Ä–æ–≤ –ø—Ä–æ—Ü–µ—Å—Å–æ—Ä–∞\n";
+  cpu.input();
+  std::cout << "\t–í–≤–æ–¥ –ø–∞—Ä–∞–º–µ—Ç—Ä–æ–≤ –≤–∏–¥–µ–æ–∫–∞—Ä—Ç—ã\n";
+  gpu.input();
+  std::cout << "\t–í–≤–æ–¥ –ø–∞—Ä–∞–º–µ—Ç—Ä–æ–≤ RAM\n";
+  ram.input();
+  std::cout << "\t–í–≤–æ–¥ –ø–∞—Ä–∞–º–µ—Ç—Ä–æ–≤ –º–∞—Ç–µ—Ä–∏–Ω—Å–∫–æ–π –ø–ª–∞—Ç—ã\n";
+  motherboard.input();
+  std::cout << "\t–í–≤–æ–¥ –ø–∞—Ä–∞–º–µ—Ç—Ä–æ–≤ —ç–∫—Ä–∞–Ω–∞\n";
+  display.input();
+  std::cout << "\t–í–≤–æ–¥ –ø–∞—Ä–∞–º–µ—Ç—Ä–æ–≤ —Ö—Ä–∞–Ω–∏–ª–∏—â–∞\n";
+  std::cout << "–í–≤–µ–¥–∏—Ç–µ —Ç–∏–ø —Ö—Ä–∞–Ω–∏–ª–∏—â–∞ (0 - HDD, 1 - SSD): ";
+  int choice;
+  do
+  {
+    std::cin >> choice;
+    if (choice != 0 && choice != 1) std::cout << "–ù–µ–∫–æ—Ä—Ä–µ–∫—Ç–Ω—ã–π –≤–≤–æ–¥!\n–ü–æ–ø—Ä–æ–±—É–π—Ç–µ –µ—â–µ —Ä–∞–∑: ";
+  } while (choice != 0 && choice != 1);
+  dataStorage = createDataStorage(choice);
+  dataStorage->input();
 }
 
 std::string Laptop::toString() const {
-	std::string name =
-		"               : " + this->modelName + "\n" +
-		"CPU: " + this->cpu.toString() + "\n" +
-		"GPU: " + this->gpu.toString() + "\n" +
-		"RAM: " + this->ram.toString() + "\n" +
-		"                 : " + this->motherboard.toString() + "\n" +
-		"     : " + this->display.toString() + "\n" +
-		this->dataStorage->getComponentName() + ": " + dataStorage->toString() + "\n";
-	return name;
+  std::string name =
+    "               : " + this->modelName + "\n" +
+    "CPU: " + this->cpu.toString() + "\n" +
+    "GPU: " + this->gpu.toString() + "\n" +
+    "RAM: " + this->ram.toString() + "\n" +
+    "                 : " + this->motherboard.toString() + "\n" +
+    "     : " + this->display.toString() + "\n" +
+    this->dataStorage->getComponentName() + ": " + dataStorage->toString() + "\n";
+  return name;
 }
 
 
 bool Laptop::checkArguments(std::string modelName, CPU cpu, GPU gpu, RAM ram, Motherboard motherboard, Display display, DataStorage* dataStorage) {
-	return (cpu.getSocket() == motherboard.getSocket()) && (ram.getRAMType() == motherboard.getSupportedRAMType());
+  return (cpu.getSocket() == motherboard.getSocket()) && (ram.getRAMType() == motherboard.getSupportedRAMType());
 }
 
+Victor, [11/11/2023 17:07]
 void Laptop::tryToSetArguments(std::string modelName, CPU cpu, GPU gpu, RAM ram, Motherboard motherboard, Display display, DataStorage* dataStorage) {
-	if (checkArguments(modelName, cpu, gpu, ram, motherboard, display, dataStorage)) {
-		this->modelName = modelName;
-		this->cpu = cpu;
-		this->gpu = gpu;
-		this->ram = ram;
-		this->motherboard = motherboard;
-		this->display = display;
-		this->dataStorage = dataStorage;
-	}
-	else throw std::invalid_argument("ÕÂÔÓ‰ıÓ‰ˇ˘ËÂ ÍÓÏÔÎÂÍÚÛ˛˘ËÂ!");
+  if (checkArguments(modelName, cpu, gpu, ram, motherboard, display, dataStorage)) {
+    this->modelName = modelName;
+    this->cpu = cpu;
+    this->gpu = gpu;
+    this->ram = ram;
+    this->motherboard = motherboard;
+    this->display = display;
+    this->dataStorage = dataStorage;
+  }
+  else throw std::invalid_argument("–ù–µ–ø–æ–¥—Ö–æ–¥—è—â–∏–µ –∫–æ–º–ø–ª–µ–∫—Ç—É—é—â–∏–µ!");
 }
 
 DataStorage* Laptop::createDataStorage(int choice) {
-	DataStorage* dataStorage;
-	if (choice == 0) dataStorage = new HDD();
-	else dataStorage = new SSD();
-	return dataStorage;
+  DataStorage* dataStorage;
+  if (choice == 0) dataStorage = new HDD();
+  else dataStorage = new SSD();
+  return dataStorage;
 }
 
 
 void Laptop::boostCPU() {
-	try
-	{
-		cpu++;
-	}
-	catch (const std::invalid_argument&)
-	{
-		std::cout << "–‡Á„ÓÌ CPU ·ÓÎ¸¯Â ÌÂ‚ÓÁÏÓÊÂÌ!\n";
-	}
+  try
+  {
+    cpu++;
+  }
+  catch (const std::invalid_argument&)
+  {
+    std::cout << "–†–∞–∑–≥–æ–Ω CPU –±–æ–ª—å—à–µ –Ω–µ–≤–æ–∑–º–æ–∂–µ–Ω!\n";
+  }
 }
 
 void Laptop::boostCPU(float addable) {
-	try
-	{
-		cpu = cpu + addable;
-	}
-	catch (const std::invalid_argument&)
-	{
-		std::cout << "–‡Á„ÓÌ CPU ·ÓÎ¸¯Â ÌÂ‚ÓÁÏÓÊÂÌ!\n";
-	}
+  try
+  {
+    cpu = cpu + addable;
+  }
+  catch (const std::invalid_argument&)
+  {
+    std::cout << "–†–∞–∑–≥–æ–Ω CPU –±–æ–ª—å—à–µ –Ω–µ–≤–æ–∑–º–æ–∂–µ–Ω!\n";
+  }
 }
 
 void Laptop::boostRAM() {
-	try
-	{
-		ram++;
-	}
-	catch (const std::invalid_argument&)
-	{
-		std::cout << "–‡Á„ÓÌ RAM ·ÓÎ¸¯Â ÌÂ ‚ÓÁÏÓÊÂÌ!\n";
-	}
+  try
+  {
+    ram++;
+  }
+  catch (const std::invalid_argument&)
+  {
+    std::cout << "–†–∞–∑–≥–æ–Ω RAM –±–æ–ª—å—à–µ –Ω–µ –≤–æ–∑–º–æ–∂–µ–Ω!\n";
+  }
 }
 
 void Laptop::boostRAM(float addable) {
-	try
-	{
-		ram = ram + addable;
-	}
-	catch (const std::invalid_argument&)
-	{
-		std::cout << "–‡Á„ÓÌ RAM ·ÓÎ¸¯Â ÌÂ ‚ÓÁÏÓÊÂÌ!\n";
-	}
+  try
+  {
+    ram = ram + addable;
+  }
+  catch (const std::invalid_argument&)
+  {
+    std::cout << "–†–∞–∑–≥–æ–Ω RAM –±–æ–ª—å—à–µ –Ω–µ –≤–æ–∑–º–æ–∂–µ–Ω!\n";
+  }
 }
