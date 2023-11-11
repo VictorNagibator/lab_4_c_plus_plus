@@ -111,83 +111,83 @@ void Laptop::input() {
 }
 
 std::string Laptop::toString() const {
-  std::string name =
-    "Название модели: " + this->modelName + "\n" +
-    "CPU: " + this->cpu.toString() + "\n" +
-    "GPU: " + this->gpu.toString() + "\n" +
-    "RAM: " + this->ram.toString() + "\n" +
-    "Материнская плата: " + this->motherboard.toString() + "\n" +
-    "Экран: " + this->display.toString() + "\n" +
-    this->dataStorage->getComponentName() + ": " + dataStorage->toString() + "\n";
-  return name;
+    std::string name =
+        "Название модели: " + this->modelName + "\n" +
+        "CPU: " + this->cpu.toString() + "\n" +
+        "GPU: " + this->gpu.toString() + "\n" +
+        "RAM: " + this->ram.toString() + "\n" +
+        "Материнская плата: " + this->motherboard.toString() + "\n" +
+        "Экран: " + this->display.toString() + "\n" +
+        this->dataStorage->getComponentName() + ": " + dataStorage->toString() + "\n";
+    return name;
 }
 
 
 bool Laptop::checkArguments(std::string modelName, CPU cpu, GPU gpu, RAM ram, Motherboard motherboard, Display display, DataStorage* dataStorage) {
-  return (cpu.getSocket() == motherboard.getSocket()) && (ram.getRAMType() == motherboard.getSupportedRAMType());
+    return (cpu.getSocket() == motherboard.getSocket()) && (ram.getRAMType() == motherboard.getSupportedRAMType());
 }
 
 void Laptop::tryToSetArguments(std::string modelName, CPU cpu, GPU gpu, RAM ram, Motherboard motherboard, Display display, DataStorage* dataStorage) {
-  if (checkArguments(modelName, cpu, gpu, ram, motherboard, display, dataStorage)) {
-    this->modelName = modelName;
-    this->cpu = cpu;
-    this->gpu = gpu;
-    this->ram = ram;
-    this->motherboard = motherboard;
-    this->display = display;
-    this->dataStorage = dataStorage;
-  }
-  else throw std::invalid_argument("Неподходящие комплектующие!");
+    if (checkArguments(modelName, cpu, gpu, ram, motherboard, display, dataStorage)) {
+        this->modelName = modelName;
+        this->cpu = cpu;
+        this->gpu = gpu;
+        this->ram = ram;
+        this->motherboard = motherboard;
+        this->display = display;
+        this->dataStorage = dataStorage;
+    }
+    else throw std::invalid_argument("Неподходящие комплектующие!");
 }
 
 DataStorage* Laptop::createDataStorage(int choice) {
-  DataStorage* dataStorage;
-  if (choice == 0) dataStorage = new HDD();
-  else dataStorage = new SSD();
-  return dataStorage;
+     DataStorage* dataStorage;
+     if (choice == 0) dataStorage = new HDD();
+     else dataStorage = new SSD();
+     return dataStorage;
 }
 
 
 void Laptop::boostCPU() {
-  try
-  {
-    cpu++;
-  }
-  catch (const std::invalid_argument&)
-  {
-    std::cout << "Разгон CPU больше невозможен!\n";
-  }
+     try
+     {
+          cpu++;
+     }
+     catch (const std::invalid_argument&)
+     {
+          std::cout << "Разгон CPU больше невозможен!\n";
+     }
 }
 
 void Laptop::boostCPU(float addable) {
-  try
-  {
-    cpu = cpu + addable;
-  }
-  catch (const std::invalid_argument&)
-  {
-    std::cout << "Разгон CPU больше невозможен!\n";
-  }
+     try
+     {
+        cpu = cpu + addable;
+     }
+     catch (const std::invalid_argument&)
+     {
+        std::cout << "Разгон CPU больше невозможен!\n";
+     }
 }
 
 void Laptop::boostRAM() {
-  try
-  {
-    ram++;
-  }
-  catch (const std::invalid_argument&)
-  {
-    std::cout << "Разгон RAM больше не возможен!\n";
-  }
+     try
+     {
+        ram++;
+     }
+     catch (const std::invalid_argument&)
+     {
+        std::cout << "Разгон RAM больше не возможен!\n";
+     }
 }
 
 void Laptop::boostRAM(float addable) {
-  try
-  {
-    ram = ram + addable;
-  }
-  catch (const std::invalid_argument&)
-  {
-    std::cout << "Разгон RAM больше не возможен!\n";
-  }
+     try
+     {
+        ram = ram + addable;
+     }
+     catch (const std::invalid_argument&)
+     {
+        std::cout << "Разгон RAM больше не возможен!\n";
+     }
 }
