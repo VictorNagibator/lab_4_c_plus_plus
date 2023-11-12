@@ -49,7 +49,7 @@ std::string SSD::toString() const {
 
 
 bool SSD::checkArguments(FlashMemoryType typeOfFlashMemory) const {
-	return capacity >= 0 && transferInterface >= PATA && transferInterface <= NVME && typeOfFlashMemory >= SLC && typeOfFlashMemory <= NAND3D && formFactor >= 0;
+	return typeOfFlashMemory >= SLC && typeOfFlashMemory <= NAND3D;
 }
 
 void SSD::tryToSetArguments(FlashMemoryType typeOfFlashMemory) {
