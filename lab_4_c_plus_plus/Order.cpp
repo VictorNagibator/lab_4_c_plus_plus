@@ -34,10 +34,10 @@ void Order::input() {
 	StatusType type;
 	numOfLastOrder++;
 
-	std::cout << "Номер заказа: " << numOfLastOrder;
-	std::cout << "Введите статус заказа (0 - в ожидании, 1 - в ремонте, 2 - отремонтирован): ";
+	std::cout << "РќРѕРјРµСЂ Р·Р°РєР°Р·Р°: " << numOfLastOrder;
+	std::cout << "Р’РІРµРґРёС‚Рµ СЃС‚Р°С‚СѓСЃ Р·Р°РєР°Р·Р° (0 - РІ РѕР¶РёРґР°РЅРёРё, 1 - РІ СЂРµРјРѕРЅС‚Рµ, 2 - РѕС‚СЂРµРјРѕРЅС‚РёСЂРѕРІР°РЅ): ";
 	std::cin >> type;
-	std::cout << "\tВвод параметров ноутбука\n";
+	std::cout << "\tР’РІРѕРґ РїР°СЂР°РјРµС‚СЂРѕРІ РЅРѕСѓС‚Р±СѓРєР°\n";
 	this->laptop.input();
 
 	this->numOfOrder = numOfLastOrder;
@@ -48,9 +48,9 @@ void Order::input() {
 void Order::setStatus(StatusType status) {
 	if (checkArguments(status)) {
 		this->status = status;
-		std::cout << "Состояние заказа успешно изменено!\n";
+		std::cout << "РЎРѕСЃС‚РѕСЏРЅРёРµ Р·Р°РєР°Р·Р° СѓСЃРїРµС€РЅРѕ РёР·РјРµРЅРµРЅРѕ!\n";
 	}
-	else throw std::invalid_argument("Некорректный формат данных!");
+	else throw std::invalid_argument("РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ С„РѕСЂРјР°С‚ РґР°РЅРЅС‹С…!");
 }
 
 void Order::setLaptop(Laptop laptop) {
@@ -71,5 +71,5 @@ void Order::tryToSetArguments(StatusType status) {
 	if (checkArguments(status)) {
 		this->status = status;
 	}
-	else throw std::invalid_argument("Некорректный формат данных!");
+	else throw std::invalid_argument("РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ С„РѕСЂРјР°С‚ РґР°РЅРЅС‹С…!");
 }
