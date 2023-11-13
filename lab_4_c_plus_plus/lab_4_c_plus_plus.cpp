@@ -13,7 +13,7 @@ int main()
 	{
 		Order test = Order(Laptop());
 	}
-	std::cout << "Общее количество заказов: " << Order::getNumOfLastOrder() << std::endl << std::endl;
+	std::cout << "Num of Orders: " << Order::getNumOfLastOrder() << std::endl << std::endl;
 
 	//2. Возврат значения через указатель и ссылку
 	Laptop example = Laptop();

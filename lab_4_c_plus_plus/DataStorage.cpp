@@ -1,4 +1,4 @@
-#include "DataStorage.h"
+﻿#include "DataStorage.h"
 
 DataStorage::DataStorage(DataTransferInterface transferInterface) {
 	this->transferInterface = transferInterface;
